@@ -4,6 +4,6 @@ conf
 logs
 node_modules
 
-
-!app/public/wp-content/plugins/test
+!/app/public/wp-content/plugins
+!/app/public/wp-content/plugins/*
 
