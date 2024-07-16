@@ -1,10 +1,15 @@
 .idea
-/app
+
 conf
 logs
 node_modules
 
-!/app/public/wp-content/plugins
-!/app/public/wp-content/plugins/*
-!/app/public/wp-content/plugins/index.php
+app/public/*
+app/public/wp-content/themes
+app/public/wp-content/uploads
+app/public/wp-content/index.php
+
+
+!app/public/wp-content
+!app/public/wp-content/plugins/*
 
