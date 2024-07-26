@@ -27,6 +27,59 @@
 
 ## Section 2: Create the Curvy Block
 
+### 8. Start implementing the side panel
+- react components (such as the `Edit()` thingie), can only return one parent element.  That's why return statements are wrapped in a `react fragment`
+```
+return (
+    <> // <-- start react fragment
+        //stuff
+    </> // <-- /end react fragment
+)
+```
+- inspector controls component
+```
+// taken from app/public/wp-content/plugins/blockylicious/src/blocks/curvy/edit.js
+
+import {InspectorControls, useBlockProps} from '@wordpress/block-editor';
+...
+export default function Edit() {
+    return (
+        <>
+            <p {...useBlockProps()}>
+                {__('Test – hello from the editor!', 'test')}
+            </p>
+            <InspectorControls>
+                Test Message
+            </InspectorControls>
+        </>
+    );
+}
+```
+### 9. Build out the side panel
+- `PanelBody` react component: WordPress gives us the `PanelBody` component to style inspector elements
+```
+import {PanelBody} from '@wordpress/components';
+...
+export default function Edit() {
+    return (
+        <>
+            <p {...useBlockProps()}>
+                {__('Test – hello from the editor!', 'test')}
+            </p>
+            <InspectorControls>
+                <PanelBody title="Top Curve">
+                    Test message
+                </PanelBody>
+            </InspectorControls>
+        </>
+    );
+```
+- had to run `npm install @wordpress/components --save` to get the components package
+- If you want to include inline styles, you have to pass them like this `<div style={{ display: flex; }}>`
+- I probably need to find a resource that includes all the different wordpress react components
+- `import metadata from './block.json'` <-- pretty neat
+- if you want to use a JavaScript function in the return statement, you have to wrap it in `{ }`
+
 ## Section 3: Extra customizations for the curvy block
 
 ## Section 4: Create the Clicky blocks
