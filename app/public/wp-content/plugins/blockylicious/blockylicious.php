@@ -26,6 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function create_block_blockylicious_block_init() {
-	register_block_type( __DIR__ . '/build' );
+	register_block_type( __DIR__ . '/build/blocks/curvy' );
 }
 add_action( 'init', 'create_block_blockylicious_block_init' );
