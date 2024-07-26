@@ -22,8 +22,8 @@
 - `npx @wordpress/create-block block-name` creates a plugin.  Not sure if that's ideal.
 - `__DIR__` => Current directory.  Not sure if I ever knew that.
 
-
 ### 7. Update the plugin structure and metadata
+- `node -v > .nvmrc` is a handy command to create a .nvmrc file
 
 ## Section 2: Create the Curvy Block
 
