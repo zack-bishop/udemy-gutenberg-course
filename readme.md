@@ -80,13 +80,15 @@ export default function Edit() {
 - `import metadata from './block.json'` <-- pretty neat
 - if you want to use a JavaScript function in the return statement, you have to wrap it in `{ }`
 
+### 10. Introduction to block attributes
+
 ## Section 3: Extra customizations for the curvy block
 
 ## Section 4: Create the Clicky blocks
 
 ## Section 5: Create the Piccy blocks
 
-## Section 6: Create the Piccy blocks
+## Section 6: Block patterns and default block styles
 
 ## Section 7: Low-highlight text effect for rich text
 
