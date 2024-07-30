@@ -12,7 +12,7 @@ import {__} from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import {InspectorControls, useBlockProps} from '@wordpress/block-editor';
-import {PanelBody, ToggleControl} from '@wordpress/components';
+import {HorizontalRule, PanelBody, RangeControl, ToggleControl} from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -24,6 +24,8 @@ import './editor.scss';
 
 import metadata from './block.json';
 
+import {Curve} from './components/curve';
+
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -32,20 +34,55 @@ import metadata from './block.json';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit(props) {
+
+    console.log({props});
+
+    const {className, ...blockProps} = useBlockProps();
+
+    console.log({className});
+
     return (
         <>
-            <p {...useBlockProps()}>
-                {__('Test – hello from the editor!', metadata.textdomain)}
-            </p>
+            <section className={`${className} alignfull`} {...blockProps}>
+                {props.attributes.enableTopCurve && <Curve height={props.attributes.topHeight} width={props.attributes.topWidth}/>}
+            </section>
             <InspectorControls>
                 <PanelBody title={__('Top Curve', metadata.textdomain)}>
                     <div style={{display: "flex"}}>
-                        <ToggleControl/>
+                        <ToggleControl
+                            onChange={(isChecked) => props.setAttributes({enableTopCurve: isChecked})}
+                            checked={props.attributes.enableTopCurve}/>
                         <span>
                              {__('Enable top curve', metadata.textdomain)}
                         </span>
                     </div>
+                    {props.attributes.enableTopCurve && (
+                        <>
+                            <HorizontalRule/>
+                            <RangeControl
+                                min={100}
+                                max={300}
+                                value={props.attributes.topWidth || 100}
+                                onChange={(newValue) => {
+                                    props.setAttributes({
+                                        topWidth: parseInt(newValue)
+                                    });
+                                }}
+                                label={__('Width', metadata.textdomain)}/>
+                            <RangeControl
+                                min={0}
+                                max={200}
+                                value={props.attributes.topHeight}
+                                onChange={(newValue) => {
+                                    props.setAttributes({
+                                        topHeight: parseInt(newValue)
+                                    });
+                                }}
+                                label={__('Height', metadata.textdomain)}/>
+                        </>
+                    )}
+
                 </PanelBody>
             </InspectorControls>
         </>
